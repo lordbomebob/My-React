@@ -3,6 +3,6 @@ import { defineConfig } from 'vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: 'deploy-my-vite-project/',
+  base: '/My-React/',
   plugins: [react()],
 })
