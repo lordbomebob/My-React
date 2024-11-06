@@ -7,10 +7,10 @@ const ConsoleLogForm = () => {
     consoleChoice:'Log',
     message:''
   })
-  const [logOnce,setLogOnce]= useState(false)
+  
   const [logData, setLogData] = useState({});
   
-    useLogger(logData.consoleChoice, logData.scope, logData.message);
+  useLogger(logData.consoleChoice, logData.scope, logData.message);
   
   {/*
     */}
