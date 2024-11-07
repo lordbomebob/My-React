@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
+import { useRoutes } from 'react-router-dom'
 import './App.css'
-
+import { HomePage } from './components/Pages/HomePage'
+import { ProductDetailPage } from './components/Pages/ProductDetailPage'
 import { SearchAppBar } from './components/SearchAppBar'
-import { Button, Box } from '@mui/material'
-import { ProductList } from './components/ProductList'
+
 
 function App() {
   const [allItem, setAllItem]=useState({})
@@ -20,20 +21,28 @@ function App() {
       
   }
 
-  const [cart, setCart] = useState([])
-  function addCart(){
-    cart.push(1)
+  const [cart, setCart] = useState({})
+  function addCart(item,amount ){
+
     console.log(cart)
   }
-  
+  let element= useRoutes(
+    [
+      {
+        path:'/My-React/',
+        element:<HomePage allItem={allItem}></HomePage>
+      },
+      {
+        path:'/My-React/product-detail/:id',
+        element:<ProductDetailPage></ProductDetailPage>
+      }
+    ]
+  )
 
   return (
     <>
-      <SearchAppBar></SearchAppBar>
-      <Box sx={{flexDirection:'row'}}>
-      <ProductList items={allItem}></ProductList>
-      </Box>
-      
+    <SearchAppBar></SearchAppBar>
+    {element}
     </>
   )
 }
