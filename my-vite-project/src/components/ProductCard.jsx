@@ -1,25 +1,30 @@
+import { Box, Button, Card, CardContent, CardHeader, CardMedia, Typography } from '@mui/material'
 import React from 'react'
-import {Box, Button, Card, CardContent, CardMedia, Typography} from '@mui/material'
-export const ProductCard = ({name="undefine", category='undefine', price='undefine', img}) => {
+export const ProductCard = ({item}) => {
 
   return (
     <Card>
-        <CardContent>
+        <CardHeader>
+          
+        </CardHeader>
+        <CardContent sx={{flexDirection:'column'}}>
             <Box>
 
                 <CardMedia
                 component="img"
-                src={img}
+                src={item.image}
                 style={{height:'200px', width:'200px'}}
                 >
                 </CardMedia>
             </Box>
 
-            
-            <Typography>Name:{name}</Typography>
-            <Typography>Category:{category}</Typography>
-            <Typography>Price:{price}</Typography>
-            <Button>Add To Cart</Button>
+            <Box>
+              <Typography>Name:{item.title}</Typography>
+              <Typography>Category:{item.category}</Typography>
+              <Typography>Price:{item.price}</Typography>
+              
+              <Button href={`/My-React/product-detail/${item.id}`}>Product Detail</Button>
+            </Box>
         </CardContent>
     </Card>
   )
