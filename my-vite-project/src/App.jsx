@@ -1,13 +1,37 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
-import ConsoleLogForm from './components/CustomHookAssignment/ConsoleLogForm'
+
+import { SearchAppBar } from './components/SearchAppBar'
+import { Button, Box } from '@mui/material'
+import { ProductList } from './components/ProductList'
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [allItem, setAllItem]=useState({})
+  useEffect(()=>{
+    fetchData()
+    
+  },[])
+  
+  const fetchData = async () => {
+      const data = await fetch('https://fakestoreapi.com/products')
+      const jsonData = await data.json();
+      console.log(jsonData)
+      setAllItem(jsonData)
+      
+  }
+
+  const [cart, setCart] = useState([])
+  function addCart(){
+    cart.push(1)
+    console.log(cart)
+  }
   
 
   return (
     <>
-      <ConsoleLogForm></ConsoleLogForm>
+      <SearchAppBar></SearchAppBar>
+      <ProductList items={allItem}></ProductList>
+      <Button onClick={addCart}>addCart</Button>
     </>
   )
 }
