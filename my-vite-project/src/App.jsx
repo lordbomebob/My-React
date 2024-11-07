@@ -30,8 +30,10 @@ function App() {
   return (
     <>
       <SearchAppBar></SearchAppBar>
+      <Box sx={{flexDirection:'row'}}>
       <ProductList items={allItem}></ProductList>
-      <Button onClick={addCart}>addCart</Button>
+      </Box>
+      
     </>
   )
 }
