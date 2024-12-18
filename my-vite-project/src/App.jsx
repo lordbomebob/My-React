@@ -1,6 +1,9 @@
+import { Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { useRoutes } from 'react-router-dom'
 import './App.css'
+import { UserCardAssignment } from './components/AssignmentParentComponents/UserCardAssignment'
+import { ShoppingCart } from './components/Context/ShoppingCart'
 import { HomePage } from './components/Pages/HomePage'
 import { ProductDetailPage } from './components/Pages/ProductDetailPage'
 import { SearchAppBar } from './components/SearchAppBar'
@@ -20,12 +23,8 @@ function App() {
       setAllItem(jsonData)
       
   }
-
-  const [cart, setCart] = useState({})
-  function addCart(item,amount ){
-
-    console.log(cart)
-  }
+  
+  
   let element= useRoutes(
     [
       {
@@ -35,14 +34,24 @@ function App() {
       {
         path:'/My-React/product-detail/:id',
         element:<ProductDetailPage></ProductDetailPage>
+      },
+      {
+        path:'/My-React/search/:target',
+        element:<HomePage allItem={allItem}></HomePage>
       }
     ]
   )
 
   return (
     <>
-    <SearchAppBar></SearchAppBar>
-    {element}
+    <ShoppingCart>
+    
+      <SearchAppBar></SearchAppBar>
+      
+      {element}
+    </ShoppingCart>
+    <Typography variant='h1'>User Card Assignment</Typography>
+    <UserCardAssignment></UserCardAssignment>
     </>
   )
 }
